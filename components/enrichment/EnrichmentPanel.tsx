@@ -23,7 +23,7 @@ export function EnrichmentPanel({ company, enrichment, onEnrich }: Props) {
       const result = await simulateEnrichment(company);
       onEnrich(result);
     } catch {
-      setError("Enrichment failed. Check API configuration.");
+      setError("We couldn’t extract enrichment data from this website. It may be unavailable or blocking automated access.");
     } finally {
       setLoading(false);
     }
