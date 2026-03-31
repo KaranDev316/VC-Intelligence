@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import styles from "./Sidebar.module.css";
 
 type SidebarItem = {
   id: string;
@@ -23,126 +24,33 @@ const ITEMS: SidebarItem[] = [
 
 export function Sidebar({ page, onChangePage, enrichedCount, highScoreCount }: Props) {
   return (
-    <div
-      style={{
-        width: 220,
-        background: "#0a0d14",
-        borderRight: "1px solid #1e2130",
-        display: "flex",
-        flexDirection: "column",
-        padding: "24px 0",
-        flexShrink: 0,
-      }}
-    >
-      <div
-        style={{
-          padding: "0 20px 24px",
-          borderBottom: "1px solid #1e2130",
-        }}
-      >
-        <div
-          style={{
-            fontSize: 13,
-            fontWeight: 800,
-            color: "#f1f5f9",
-            letterSpacing: 0.5,
-            fontFamily: "'Georgia', serif",
-          }}
-        >
-          VC Intelligence
-        </div>
-        <div
-          style={{
-            fontSize: 10,
-            color: "#334155",
-            marginTop: 2,
-            letterSpacing: 1,
-            textTransform: "uppercase",
-          }}
-        >
-          Thesis-first sourcing
-        </div>
+    <aside className={styles.sidebar}>
+      <div className={styles.brand}>
+        <div className={styles.brandName}>SignalVC</div>
+        <div className={styles.brandTag}>Thesis-first sourcing</div>
       </div>
 
-      <nav style={{ flex: 1, padding: "16px 12px" }}>
+      <nav className={styles.nav}>
         {ITEMS.map((item) => (
           <button
             key={item.id}
             onClick={() => onChangePage(item.id)}
-            style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              padding: "10px 12px",
-              borderRadius: 8,
-              border: "none",
-              cursor: "pointer",
-              background: page === item.id ? "#1e2130" : "transparent",
-              color: page === item.id ? "#e2e8f0" : "#475569",
-              fontSize: 13,
-              fontFamily: "inherit",
-              fontWeight: page === item.id ? 600 : 400,
-              marginBottom: 2,
-              textAlign: "left",
-              transition: "all 0.1s",
-            }}
+            className={`${styles.navItem} ${page === item.id ? styles.navItemActive : ""}`}
           >
-            <span style={{ fontSize: 14 }}>{item.icon}</span> {item.label}
+            <span className={styles.navIcon}>{item.icon}</span>
+            <span className={styles.navItemText}>{item.label}</span>
           </button>
         ))}
       </nav>
 
-      <div
-        style={{
-          padding: "16px 20px",
-          borderTop: "1px solid #1e2130",
-        }}
-      >
-        <div
-          style={{
-            fontSize: 10,
-            color: "#334155",
-            letterSpacing: 1,
-            textTransform: "uppercase",
-            marginBottom: 12,
-          }}
-        >
-          Thesis
-        </div>
-        <div
-          style={{
-            fontSize: 11,
-            color: "#475569",
-            marginBottom: 8,
-          }}
-        >
-          API-First Fintech
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: 11,
-          }}
-        >
+      <div className={styles.footer}>
+        <div className={styles.footerTitle}>Thesis</div>
+        <div className={styles.footerMeta}>API-First Fintech</div>
+        <div className={styles.footerRow}>
           <span style={{ color: "#334155" }}>Enriched</span>
-          <span
-            style={{
-              color: "#3b82f6",
-              fontFamily: "monospace",
-            }}
-          >
-            {enrichedCount}
-          </span>
+          <span className={styles.footerValue} style={{ color: "#3b82f6" }}>{enrichedCount}</span>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: 11,
-            marginTop: 4,
-          }}
+        <div className={styles.footerRow} style={{ marginTop: 4 }}
         >
           <span style={{ color: "#334155" }}>High match (70+)</span>
           <span
@@ -155,7 +63,7 @@ export function Sidebar({ page, onChangePage, enrichedCount, highScoreCount }: P
           </span>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }
 
