@@ -1,0 +1,22 @@
+.sidebar { width: 220px; background: #0a0d14; border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 18px 0; flex-shrink: 0; }
+.brand { padding: 0 16px 18px; border-bottom: 1px solid var(--border); }
+.brandName { font-size: 13px; font-weight: 800; color: #f1f5f9; letter-spacing: 0.5px; font-family: 'Georgia', serif; }
+.brandTag { font-size: 10px; color: #334155; margin-top: 2px; letter-spacing: 1px; text-transform: uppercase; }
+.nav { flex: 1; padding: 14px 10px; }
+.navItem { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; cursor: pointer; border: none; text-align: left; background: transparent; }
+
+.navItemActive { color: #e2e8f0; font-weight: 600; background: transparent; }
+.navItemText { font-size: 13px; color: #475569; }
+.navIcon { font-size: 14px; }
+.footer { padding: 14px 16px; border-top: 1px solid var(--border); }
+.footerTitle { font-size: 10px; color: #334155; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+.footerMeta { font-size: 11px; color: #475569; margin-bottom: 8px; }
+.footerRow { display: flex; justify-content: space-between; font-size: 11px; }
+.footerValue { font-family: monospace; }
+
+@media (max-width: 960px) {
+  .sidebar { width: 100%; flex-direction: row; padding: 10px; border-right: none; border-bottom: 1px solid var(--border); }
+  .brand, .footer { display: none; }
+  .nav { display: flex; overflow-x: auto; gap: 6px; }
+  .navItem { min-width: 120px; }
+}

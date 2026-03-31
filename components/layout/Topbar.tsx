@@ -2,6 +2,7 @@
 
 import React from "react";
 import { btnStyle } from "../ui/buttonStyles";
+import styles from "./Topbar.module.css";
 
 type Props = {
   page: string;
@@ -31,66 +32,30 @@ export function Topbar({
   onSaveSearch,
 }: Props) {
   return (
-    <div
-      style={{
-        background: "#0a0d14",
-        borderBottom: "1px solid #1e2130",
-        padding: "14px 28px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        flexShrink: 0,
-      }}
-    >
-      <div style={{ fontSize: 14, color: "#475569" }}>
+    <div className={styles.topbar}>
+      <div className={styles.topbarTitle}>
         {selectedCompanyName ? (
           <span>
-            <span style={{ color: "#334155" }}>Companies</span> /{" "}
-            <span style={{ color: "#e2e8f0" }}>{selectedCompanyName}</span>
+            <strong>Companies</strong> / <strong>{selectedCompanyName}</strong>
           </span>
         ) : (
-          <span
-            style={{
-              color: "#e2e8f0",
-              fontWeight: 600,
-              textTransform: "capitalize",
-            }}
-          >
-            {page}
-          </span>
+          <strong>{page}</strong>
         )}
       </div>
 
       {page === "companies" && !selectedCompanyName && (
-        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+        <div className={styles.filterGroup}>
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search companies…"
-            style={{
-              background: "#0f1117",
-              border: "1px solid #1e2130",
-              borderRadius: 8,
-              padding: "7px 14px",
-              color: "#e2e8f0",
-              fontSize: 13,
-              fontFamily: "inherit",
-              outline: "none",
-              width: 220,
-            }}
+            className={styles.filterInput}
           />
           <select
             value={filterIndustry}
             onChange={(e) => setFilterIndustry(e.target.value)}
-            style={{
-              background: "#0f1117",
-              border: "1px solid #1e2130",
-              borderRadius: 8,
-              padding: "7px 12px",
-              color: filterIndustry ? "#e2e8f0" : "#475569",
-              fontSize: 13,
-              fontFamily: "inherit",
-            }}
+            className={styles.filterSelect}
+            style={{ color: filterIndustry ? "#e2e8f0" : "#475569" }}
           >
             <option value="">All industries</option>
             {industries.map((i) => (
@@ -102,15 +67,8 @@ export function Topbar({
           <select
             value={filterStage}
             onChange={(e) => setFilterStage(e.target.value)}
-            style={{
-              background: "#0f1117",
-              border: "1px solid #1e2130",
-              borderRadius: 8,
-              padding: "7px 12px",
-              color: filterStage ? "#e2e8f0" : "#475569",
-              fontSize: 13,
-              fontFamily: "inherit",
-            }}
+            className={styles.filterSelect}
+            style={{ color: filterStage ? "#e2e8f0" : "#475569" }}
           >
             <option value="">All stages</option>
             {stages.map((s) => (
@@ -121,7 +79,8 @@ export function Topbar({
           </select>
           <button
             onClick={onSaveSearch}
-            style={{ ...btnStyle, fontSize: 12, padding: "7px 12px" }}
+            className={styles.filterButton}
+            style={{ fontSize: 12, padding: "7px 12px" }}
           >
             Save Search
           </button>

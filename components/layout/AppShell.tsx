@@ -10,6 +10,7 @@ import { CompanyTable } from "../companies/CompanyTable";
 import { CompanyProfile } from "../companies/CompanyProfile";
 import { ListManager } from "../lists/ListManager";
 import { SavedPage } from "../lists/SavedPage";
+import styles from "./AppShell.module.css";
 
 type List = {
   id: string;
@@ -117,26 +118,7 @@ export function AppShell() {
   ).length;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        minHeight: "100vh",
-        background: "#06080f",
-        fontFamily: "'Segoe UI', system-ui, sans-serif",
-        color: "#e2e8f0",
-      }}
-    >
-      <style>{`
-        * { box-sizing: border-box; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #06080f; }
-        ::-webkit-scrollbar-thumb { background: #1e2130; border-radius: 3px; }
-        textarea:focus, input:focus, select:focus {
-          border-color: #3b82f620 !important;
-          box-shadow: 0 0 0 2px #3b82f610;
-        }
-      `}</style>
+    <div className={styles.appShell}>
 
       <Sidebar
         page={page}
@@ -148,14 +130,7 @@ export function AppShell() {
         highScoreCount={highScoreCount}
       />
 
-      <div
-        style={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          overflow: "hidden",
-        }}
-      >
+      <div className={styles.container}>
         <Topbar
           page={page}
           selectedCompanyName={selectedCompany?.name}
@@ -170,53 +145,16 @@ export function AppShell() {
           onSaveSearch={saveSearch}
         />
 
-        <div
-          style={{
-            flex: 1,
-            overflowY: "auto",
-            padding: 28,
-          }}
-        >
+        <div className={styles.mainContent}>
           {page === "companies" && !selectedCompany && (
             <div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: 20,
-                }}
-              >
+              <div className={styles.pageHeader}>
                 <div>
-                  <h2
-                    style={{
-                      fontSize: 22,
-                      fontWeight: 800,
-                      color: "#f1f5f9",
-                      fontFamily: "'Georgia', serif",
-                      marginBottom: 4,
-                    }}
-                  >
-                    Deal Pipeline
-                  </h2>
-                  <div
-                    style={{
-                      fontSize: 13,
-                      color: "#475569",
-                    }}
-                  >
-                    {filteredCompanies.length} companies matching filters
-                  </div>
+                  <h2 className={styles.pageTitle}>Deal Pipeline</h2>
+                  <div className={styles.pageMeta}>{filteredCompanies.length} companies matching filters</div>
                 </div>
               </div>
-              <div
-                style={{
-                  background: "#0a0d14",
-                  border: "1px solid #1e2130",
-                  borderRadius: 12,
-                  overflow: "hidden",
-                }}
-              >
+              <div className={styles.panelBox}>
                 <CompanyTable
                   companies={filteredCompanies}
                   enrichments={enrichments}
@@ -239,17 +177,7 @@ export function AppShell() {
 
           {page === "lists" && (
             <div>
-              <h2
-                style={{
-                  fontSize: 22,
-                  fontWeight: 800,
-                  color: "#f1f5f9",
-                  fontFamily: "'Georgia', serif",
-                  marginBottom: 20,
-                }}
-              >
-                Lists
-              </h2>
+              <h2 className={styles.pageTitle}>Lists</h2>
               <ListManager
                 lists={lists}
                 setLists={setLists}
@@ -260,17 +188,7 @@ export function AppShell() {
 
           {page === "saved" && (
             <div>
-              <h2
-                style={{
-                  fontSize: 22,
-                  fontWeight: 800,
-                  color: "#f1f5f9",
-                  fontFamily: "'Georgia', serif",
-                  marginBottom: 20,
-                }}
-              >
-                Saved Searches
-              </h2>
+              <h2 className={styles.pageTitle}>Saved Searches</h2>
               <SavedPage
                 savedSearches={savedSearches}
                 setSavedSearches={setSavedSearches}
