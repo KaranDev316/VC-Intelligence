@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SignalVC",
-  description: "Thesis-first sourcing platform",
+  title: "VC Intelligence | Thesis-First Deal Research",
+  description:
+    "Discover, enrich, and evaluate companies against your investment thesis.",
 };
 
 export default function RootLayout({
