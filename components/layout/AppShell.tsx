@@ -29,7 +29,11 @@ type SavedSearch = {
 
 const COMPANIES = companiesData as Company[];
 
-export function AppShell() {
+type AppShellProps = {
+  onExitApp: () => void;
+};
+
+export function AppShell({ onExitApp }: AppShellProps) {
   const [page, setPage] = useState<"companies" | "lists" | "saved">("companies");
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
   const [enrichments, setEnrichments] = useState<Record<string, Enrichment>>(
@@ -122,6 +126,7 @@ export function AppShell() {
 
       <Sidebar
         page={page}
+        onExitApp={onExitApp}
         onChangePage={(id) => {
           setPage(id as typeof page);
           setSelectedCompany(null);
@@ -201,4 +206,3 @@ export function AppShell() {
     </div>
   );
 }
-

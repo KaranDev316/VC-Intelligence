@@ -8,9 +8,8 @@ export default function Page() {
   const [showApp, setShowApp] = useState(false);
 
   if (showApp) {
-    return <AppShell />;
+    return <AppShell onExitApp={() => setShowApp(false)} />;
   }
 
   return <LandingPage onEnterApp={() => setShowApp(true)} />;
 }
-

@@ -11,6 +11,7 @@ type SidebarItem = {
 
 type Props = {
   page: string;
+  onExitApp: () => void;
   onChangePage: (id: string) => void;
   enrichedCount: number;
   highScoreCount: number;
@@ -22,15 +23,22 @@ const ITEMS: SidebarItem[] = [
   { id: "saved", label: "Saved Searches", icon: "◉" },
 ];
 
-export function Sidebar({ page, onChangePage, enrichedCount, highScoreCount }: Props) {
+export function Sidebar({ page, onExitApp, onChangePage, enrichedCount, highScoreCount }: Props) {
   return (
     <aside className={styles.sidebar}>
-      <div className={styles.brand}>
-        <div className={styles.brandName}>SignalVC</div>
-        <div className={styles.brandTag}>Thesis-first sourcing</div>
-      </div>
+      <button className={styles.brand} onClick={onExitApp} title="Back to home">
+        <span className={styles.brandMark}>VI</span>
+        <span>
+          <span className={styles.brandName}>VC Intelligence</span>
+          <span className={styles.brandTag}>Thesis-first sourcing</span>
+        </span>
+      </button>
 
       <nav className={styles.nav}>
+        <button onClick={onExitApp} className={`${styles.navItem} ${styles.homeItem}`}>
+          <span className={styles.navIcon} aria-hidden="true">←</span>
+          <span className={styles.navItemText}>Home</span>
+        </button>
         {ITEMS.map((item) => (
           <button
             key={item.id}
@@ -66,4 +74,3 @@ export function Sidebar({ page, onChangePage, enrichedCount, highScoreCount }: P
     </aside>
   );
 }
-
